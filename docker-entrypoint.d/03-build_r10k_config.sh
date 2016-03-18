@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 mkdir -p /etc/puppetlabs/r10k
