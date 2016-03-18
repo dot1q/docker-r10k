@@ -1,8 +1,5 @@
 FROM ubuntu:14.04.4
 
-ENV LANGUAGE=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
 ENV PATH=/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
 ENV PUPPET_RELEASE trusty
@@ -11,7 +8,7 @@ ENV R10K_VERSION='2.2.0'
 # Install puppet-agent and git
 
 RUN apt-get update \
-  && apt-get install -y curl locales \
+  && apt-get install -y curl \
   && curl -O http://apt.puppetlabs.com/puppetlabs-release-pc1-${PUPPET_RELEASE}.deb \
   && dpkg -i puppetlabs-release-pc1-${PUPPET_RELEASE}.deb \
   && apt-get update \
