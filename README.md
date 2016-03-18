@@ -13,5 +13,6 @@ docker run -v /your/codedir:/etc/puppetlabs/code -e REPOSITORY="https://github.c
 ### Using a SSH key
 
 ```
-docker run -v /your/codedir:/etc/puppetlabs/code -e REPOSITORY="https://github.com/someone/control-repo.git" -e PRIVATE_KEY="YOURREALLYLONGKEY" grahamgilbert/r10k
+export PRIVATE_KEY="$(cat /path/to/your/key)"
+docker run -v /your/codedir:/etc/puppetlabs/code -e REPOSITORY="https://github.com/someone/control-repo.git" -e PRIVATE_KEY=$PRIVATE_KEY grahamgilbert/r10k
 ```

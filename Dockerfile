@@ -11,11 +11,10 @@ ENV R10K_VERSION='2.2.0'
 # Install puppet-agent and git
 
 RUN apt-get update \
-  && apt-get install -y curl locales-all \
+  && apt-get install -y curl locales \
   && curl -O http://apt.puppetlabs.com/puppetlabs-release-pc1-${PUPPET_RELEASE}.deb \
   && dpkg -i puppetlabs-release-pc1-${PUPPET_RELEASE}.deb \
-  && rm -rf /var/lib/apt/lists/* \
-  apt-get update \
+  && apt-get update \
   && apt-get install -y puppet-agent git \
   && rm -rf /var/lib/apt/lists/*
 
@@ -27,8 +26,8 @@ RUN mkdir /root/.ssh \
   && chmod 0600 /root/.ssh \
   && echo StrictHostKeyChecking no > /root/.ssh/config
 
-  # Configure volumes
-  VOLUME ["/opt/puppetlabs/r10k/cache/", "/etc/puppetlabs/code/environments"]
+# Configure volumes
+VOLUME ["/opt/puppetlabs/r10k/cache/", "/etc/puppetlabs/code/environments"]
 
 # Configure entrypoint
 COPY /docker-entrypoint.sh /
