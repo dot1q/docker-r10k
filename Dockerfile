@@ -24,7 +24,7 @@ RUN mkdir /root/.ssh \
   && echo StrictHostKeyChecking no > /root/.ssh/config
 
 # Configure volumes
-VOLUME ["/opt/puppetlabs/r10k/cache/", "/etc/puppetlabs/code/environments"]
+VOLUME ["/opt/puppetlabs/r10k/cache/", "/etc/puppetlabs/code"]
 
 # Configure entrypoint
 COPY /docker-entrypoint.sh /
