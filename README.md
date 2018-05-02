@@ -23,7 +23,7 @@ docker run -v /your/codedir:/etc/puppetlabs/code -e REPOSITORY="git@github.com:s
 node {
     def app
     
-    withCredentials([sshUserPrivateKey(credentialsId: 'bcaa26f6-f754-43d0-8c05-eeacc05e02d1', keyFileVariable: 'keyfile')]) {
+    withCredentials([sshUserPrivateKey(credentialsId: 'deez-creds-uuid', keyFileVariable: 'keyfile')]) {
         stage('Run R10k') {
             withDockerServer([uri: "tcp://10.10.10.10:2375"]) {
                 Image = docker.image('gbrewster/r10k')
