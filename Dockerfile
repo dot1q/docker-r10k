@@ -1,22 +1,22 @@
-FROM ubuntu:14.04.4
+FROM ubuntu:22.04
 
 ENV PATH=/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
-ENV PUPPET_RELEASE trusty
-ENV R10K_VERSION='2.2.0'
+ENV PUPPET_RELEASE jammy
+ENV R10K_VERSION='5.0.2'
 
 # Install puppet-agent and git
 
 RUN apt-get update \
   && apt-get install -y curl \
-  && curl -O http://apt.puppetlabs.com/puppetlabs-release-pc1-${PUPPET_RELEASE}.deb \
-  && dpkg -i puppetlabs-release-pc1-${PUPPET_RELEASE}.deb \
+  && curl -O http://apt.puppetlabs.com/puppet8-release-${PUPPET_RELEASE}.deb \
+  && dpkg -i puppet8-release-${PUPPET_RELEASE}.deb \
   && apt-get update \
   && apt-get install -y puppet-agent git \
   && rm -rf /var/lib/apt/lists/*
 
 # Install r10k
-RUN gem install r10k --version $R10K_VERSION --no-ri --no-rdoc
+RUN gem install r10k --version $R10K_VERSION --no-document
 
 # Configure .ssh directory
 RUN mkdir /root/.ssh \
